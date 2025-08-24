@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Your Link...</title>
+    <!-- Google Font: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Styling for Redirect Page --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            padding-top: 30px; /* Add some padding at the top */
+            background-color: #f4f7f6;
+            background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa3f0, #7ab0f7, #6ac0f7, #56cbf1, #44d4e9, #44dfdd, #55e7cf);
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 750px; /* Wider container for ads */
+            width: 90%;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .instructions {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: left;
+            border-left: 5px solid #007bff;
+        }
+
+        .instructions h2 {
+            margin-top: 0;
+            color: #34495e;
+            font-size: 1.4em;
+        }
+
+        .instructions p {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .instructions strong {
+            color: #2980b9;
+        }
+
+        /* General Button Styling */
+        .action-button {
+            background-color: #e67e22; /* Orange theme */
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            display: inline-block; /* Make it behave like a block element for margins */
+        }
+
+        .action-button:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+        }
+
+        /* Step Specific Styling */
+        #stepsContainer {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .step-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .step-header h2 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .countdown-timer {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #e74c3c; /* Red for timer */
+            background-color: #fbeaea;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .ad-content p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Ad Wrapper Styling */
+        .ad-wrapper {
+            margin: 20px auto; /* Center ads */
+            text-align: center; /* Center content within wrapper */
+            width: 100%; /* Responsive */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee; /* Placeholder background */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px 0; /* Add some padding */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .ad-banner-wrapper {
+            max-width: 728px; /* Standard banner width */
+            height: auto; /* Let height adjust */
+        }
+        .ad-banner-wrapper iframe { /* Ensure iframes are responsive */
+            max-width: 100% !important;
+            display: block; /* Remove extra space below inline elements */
+            margin: 0 auto; /* Center iframe if needed */
+            border: none;
+        }
+
+
+        .video-ad-container {
+            position: relative;
+            max-width: 640px; /* Example width for video ads */
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background-color: #000; /* Black background for video */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure content stays within bounds */
+            margin: 20px auto; /* Center the container */
+        }
+        /* Ensure script content fits within the container */
+        .video-ad-container > script { /* Target script directly inside */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block; /* Crucial for positioning */
+        }
+
+
+        /* Dummy Content Styling */
+        .dummy-content {
+            margin-top: 40px;
+            text-align: left;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .dummy-content h2 {
+            text-align: center;
+            color: #3498db;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .dummy-content p {
+            margin-bottom: 15px;
+            padding: 0 10px; /* Minor padding for readability */
+        }
+
+        .dummy-content p::before {
+            content: attr(data-emoji);
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+
+        /* Final Continue Button */
+        .continue-button-container {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .continue-action-button {
+            background-color: #27ae60; /* Green for success */
+            font-size: 1.3em;
+            padding: 18px 40px;
+        }
+
+        .continue-action-button:hover {
+            background-color: #229954;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 15px;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+            .action-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .step-header h2 {
+                font-size: 1.3em;
+            }
+            .countdown-timer {
+                font-size: 1.5em;
+            }
+            .ad-banner-wrapper {
+                max-width: 100%; /* Allow banners to fill width */
+            }
+             .video-ad-container {
+                height: 200px; /* Adjust height for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+            .step-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+             .video-ad-container {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Please Wait... Your Link is Being Prepared</h1>
+        </header>
+
+        <main>
+            <section class="instructions">
+                <h2>Follow These Steps 👇</h2>
+                <p><strong>Step 1:</strong> Wait for the timer to complete.</p>
+                <p><strong>Step 2:</strong> Ads will be displayed. Please view them.</p>
+                <p><strong>Step 3:</strong> The "Continue" button will appear after all steps.</p>
+            </section>
+
+            <button id="startRedirectBtn" class="action-button">Start</button>
+
+            <div id="stepsContainer">
+                <!-- Step 1 -->
+                <div id="step1" class="step-box" style="display: none;">
+                    <div class="step-header">
+                        <h2>Step 1</h2>
+                        <div class="countdown-timer">10s</div>
+                    </div>
+                    <div class="ad-content">
+                        <p>Loading Step 1 Ads...</p>
+                        <!-- Banner Ad Slot 1 (e.g., 300x250) -->
+                        <div class="ad-wrapper ad-banner-wrapper">
+                            <script type="text/javascript">
+                                atOptions = { 'key': 'YOUR_BANNER_AD_KEY_1', 'format': 'iframe', 'height': 250, 'width': 300, 'params': {} };
+                            </script>
+                            <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_1/invoke.js"></script>
+                        </div>
+                        <!-- Video Ad Slot 1 -->
+                        <div class="ad-wrapper video-ad-container">
+                             <!-- !!! IMPORTANT: Make sure this URL is correct and you are using it appropriately. !!! -->
+                             <!-- For multiple video ads, you'd ideally have different ad tags or placements -->
+                             <script type="text/javascript" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288"></script>
+                        </div>
+                        <!-- Banner Ad Slot 2 (e.g., 728x90) -->
+                        <div class="ad-wrapper ad-banner-wrapper">
+                            <script type="text/javascript">
+                                atOptions = { 'key': 'YOUR_BANNER_AD_KEY_2', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                            </script>
+                            <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_2/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="step2" class="step-box" style="display: none;">
+                    <div class="step-header">
+                        <h2>Step 2</h2>
+                        <div class="countdown-timer">10s</div>
+                    </div>
+                    <div class="ad-content">
+                        <p>Loading Step 2 Ads...</p>
+                        <!-- Video Ad Slot 2 -->
+                        <div class="ad-wrapper video-ad-container">
+                             <!-- Placeholder for another video ad -->
+                             <script type="text/javascript" src="https://www.profitableratecpm.com/zpb4zq40th?key=ANOTHER_VIDEO_KEY_OR_TAG"></script>
+                        </div>
+                        <!-- Banner Ad Slot 3 -->
+                        <div class="ad-wrapper ad-banner-wrapper">
+                            <script type="text/javascript">
+                                atOptions = { 'key': 'YOUR_BANNER_AD_KEY_3', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                            </script>
+                            <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_3/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div id="step3" class="step-box" style="display: none;">
+                    <div class="step-header">
+                        <h2>Step 3</h2>
+                        <div class="countdown-timer">10s</div>
+                    </div>
+                    <div class="ad-content">
+                        <p>Loading Step 3 Ads...</p>
+                        <!-- Video Ad Slot 3 -->
+                        <div class="ad-wrapper video-ad-container">
+                             <!-- Placeholder for another video ad -->
+                             <script type="text/javascript" src="https://www.profitableratecpm.com/zpb4zq40th?key=YET_ANOTHER_VIDEO_KEY"></script>
+                        </div>
+                        <!-- Banner Ad Slot 4 -->
+                        <div class="ad-wrapper ad-banner-wrapper">
+                            <script type="text/javascript">
+                                atOptions = { 'key': 'YOUR_BANNER_AD_KEY_4', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                            </script>
+                            <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_4/invoke.js"></script>
+                        </div>
+                        <!-- Banner Ad Slot 5 -->
+                        <div class="ad-wrapper ad-banner-wrapper">
+                            <script type="text/javascript">
+                                atOptions = { 'key': 'YOUR_BANNER_AD_KEY_5', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                            </script>
+                            <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_5/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dummy Content Section -->
+            <div class="dummy-content">
+                <h2>Informative Content</h2>
+                <p data-emoji="📘">Welcome! Here's some useful information to read while you wait. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p data-emoji="🚀">Discover amazing tips and tricks for productivity. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                <!-- Banner Ad Slot 6 within dummy content -->
+                <div class="ad-wrapper ad-banner-wrapper">
+                    <script type="text/javascript">
+                        atOptions = { 'key': 'YOUR_BANNER_AD_KEY_6', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_6/invoke.js"></script>
+                </div>
+
+                <p data-emoji="🔑">Key insights into digital marketing strategies. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p data-emoji="💡">Remember to engage with the content. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <!-- Video Ad Slot 4 -->
+                <div class="ad-wrapper video-ad-container">
+                    <!-- Placeholder for another video ad -->
+                    <script type="text/javascript" src="https://www.profitableratecpm.com/zpb4zq40th?key=VIDEO_AD_KEY_4"></script>
+                </div>
+
+                <p data-emoji="🌟">Further details and helpful resources. Voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+                <!-- Banner Ad Slot 7 within dummy content -->
+                <div class="ad-wrapper ad-banner-wrapper">
+                    <script type="text/javascript">
+                        atOptions = { 'key': 'YOUR_BANNER_AD_KEY_7', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_7/invoke.js"></script>
+                </div>
+
+                 <p data-emoji="✅">Ensure you have completed all steps. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                 <!-- Add many more paragraphs and ad wrappers here -->
+                 <!-- Aim for ~20-30 banner ads -->
+
+                 <!-- Video Ad Slot 5 -->
+                 <div class="ad-wrapper video-ad-container">
+                    <!-- Placeholder for another video ad -->
+                    <script type="text/javascript" src="https://www.profitableratecpm.com/zpb4zq40th?key=VIDEO_AD_KEY_5"></script>
+                 </div>
+
+                 <!-- Banner Ad Slot 8 -->
+                 <div class="ad-wrapper ad-banner-wrapper">
+                    <script type="text/javascript">
+                        atOptions = { 'key': 'YOUR_BANNER_AD_KEY_8', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/YOUR_BANNER_AD_KEY_8/invoke.js"></script>
+                </div>
+
+            </div>
+
+            <div id="continueButtonContainer" class="continue-button-container" style="display: none;">
+                <button id="finalContinueBtn" class="action-button continue-action-button">Continue to Original Link</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 YourBrandName. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        /* --- JavaScript Logic for Redirect Page --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const startRedirectBtn = document.getElementById('startRedirectBtn');
+            const stepsContainer = document.getElementById('stepsContainer');
+            const continueButtonContainer = document.getElementById('continueButtonContainer');
+            const finalContinueBtn = document.getElementById('finalContinueBtn');
+
+            let currentStep = 0; // Start at 0 to represent the state before step 1
+            const totalSteps = 3;
+            const countdownDuration = 10; // seconds
+
+            // Get the original URL from the query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const originalUrl = urlParams.get('url');
+
+            if (!originalUrl) {
+                console.error("No URL parameter found!");
+                alert("Error: Missing original URL. Please try again.");
+                // Redirect back to the index page if no URL is provided
+                window.location.href = '/'; // Assumes index.html is at the root
+                return;
+            }
+
+            // --- Event Listener for Start Button ---
+            startRedirectBtn.addEventListener('click', () => {
+                startRedirectBtn.style.display = 'none'; // Hide start button
+                // Load ads only when starting or as needed per step
+                startStep(1); // Start the first step
+            });
+
+            // --- Function to handle step progression ---
+            function startStep(stepNumber) {
+                currentStep = stepNumber;
+                const stepBox = document.getElementById(`step${stepNumber}`);
+                if (!stepBox) return;
+
+                stepBox.style.display = 'block';
+                const countdownElement = stepBox.querySelector('.countdown-timer');
+                let timeLeft = countdownDuration;
+
+                // Display initial time
+                countdownElement.textContent = `${timeLeft}s`;
+
+                // Start countdown interval
+                const countdownInterval = setInterval(() => {
+                    timeLeft--;
+                    countdownElement.textContent = `${timeLeft}s`;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(countdownInterval);
+                        countdownElement.textContent = 'Done!';
+                        stepBox.classList.add('completed'); // Optional: Add class for styling completed steps
+
+                        // Move to the next step or show final button
+                        if (currentStep < totalSteps) {
+                            startStep(currentStep + 1);
+                        } else {
+                            showFinalContinueButton();
+                        }
+                    }
+                }, 1000); // Update every second
+            }
+
+            // --- Function to show the final continue button ---
+            function showFinalContinueButton() {
+                continueButtonContainer.style.display = 'block';
+                // Add a slight delay or animation before showing the button for better UX
+                setTimeout(() => {
+                    finalContinueBtn.classList.add('visible'); // Optional class for animation
+                }, 300);
+            }
+
+            // --- Event Listener for Final Continue Button ---
+            finalContinueBtn.addEventListener('click', () => {
+                // Redirect to the original URL
+                window.location.href = originalUrl;
+            });
+
+            // --- Ad Loading Logic ---
+            // Ad scripts are placed directly in HTML. The browser executes them when the DOM is parsed.
+            // If you were dynamically loading scripts, you'd do it here.
+            // Example: If you had ad script URLs in a data attribute, you could fetch them.
+            // For instance, to ensure ads are "playing" as per user's request:
+            // The scripts themselves handle the "playing" logic (displaying banners, initiating video playback if auto-play is allowed).
+            // The structure provided ensures the slots are there for the ad networks to fill.
+
+            // --- Firebase Initialization (Optional) ---
+            /*
+            const firebaseConfig = { ... }; // Your config
+            // Initialize Firebase if needed
+            // const app = initializeApp(firebaseConfig);
+            // const analytics = getAnalytics(app);
+            */
+        });
+    </script>
+</body>
+</html>
