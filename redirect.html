@@ -3,470 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Please Wait...</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Please Wait... Verifying Your Link</title>
+    
+    <!-- POPUP / SOCIAL BAR SCRIPT (Yeh poore page par kaam karega) -->
+    <script type="text/javascript" src="//www.highperformanceformat.com/e609c6f2dd7e8f622fe449264b68d288/invoke.js"></script>
+
     <style>
-        /* --- Styles for redirect.html (Redirecting Page with Ads) --- */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            /* No zoom-related styles here, default mobile behavior is usually fine */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@700&display=swap');
+        :root {
+            --primary-color: #e53935; --secondary-color: #ff7043; --background-color: #f1f1f1;
+            --text-color: #333; --card-bg: #ffffff; --disabled-color: #9e9e9e;
+            --glowing-red: 0 0 15px #e53935, 0 0 25px #e53935;
         }
-
-        .redirect-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 50px auto;
-            text-align: center;
-            color: #333;
-        }
-
-        .guidelines-section {
-            margin-bottom: 40px;
-            padding: 25px;
-            background-color: #eaf2f8;
-            border-left: 5px solid #3498db; /* Blue theme */
-            border-radius: 8px;
-        }
-
-        .guidelines-section h2 {
-            color: #2c3e50;
-            margin-top: 0;
-            font-size: 1.8em;
-        }
-
-        .guidelines-section p {
-            font-size: 1.1em;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .animated-button {
-            padding: 15px 35px;
-            background-color: #e74c3c; /* Red theme */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
-            font-weight: 600;
-        }
-
-        .animated-button:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(231, 76, 60, 0.5);
-        }
-
-        #stepFlowContainer {
-            margin-top: 40px;
-            border-top: 1px solid #ddd;
-            padding-top: 40px;
-        }
-
-        .step {
-            background-color: #ffffff;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: left;
-        }
-
-        .step h3 {
-            color: #e74c3c;
-            font-size: 1.7em;
-            margin-top: 0;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .timer-container {
-            background-color: #f39c12; /* Orange theme for timer */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(243, 158, 18, 0.3);
-        }
-
-        #timer1, #timer2, #timer3 {
-            font-size: 1.5em;
-            margin-right: 5px;
-        }
-
-        .ads-placeholder {
-            margin: 20px 0;
-            background-color: #ecf0f1;
-            border: 1px dashed #bdc3c7;
-            border-radius: 8px;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100px; /* For banner ads */
-            width: 100%; /* Ensure it takes full width */
-            box-sizing: border-box;
-        }
-
-        .ads-placeholder iframe {
-            display: block; /* Ensures iframe is block-level */
-            margin: 0 auto; /* Centers iframe if its width is less than 100% */
-            border-radius: 5px;
-            max-width: 100%; /* Ensure iframe is responsive */
-        }
-
-        .video-ad-placeholder {
-            min-height: auto; /* Overrides min-height for video ads */
-            padding: 0;
-            border: none;
-            background: transparent;
-        }
-
-        .dummy-text {
-            font-size: 1em;
-            line-height: 1.8;
-            color: #555;
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #fdfdfd;
-            border-radius: 5px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
-        }
-
-        .dummy-text p {
-            margin-bottom: 15px;
-        }
-
-        .dummy-text h4 {
-            color: #e74c3c;
-            margin-top: 20px;
-        }
-
-        .final-continue-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-        }
-
-        /* Responsive adjustments for redirect page */
-        @media (max-width: 768px) {
-            .redirect-container {
-                margin: 20px auto;
-                padding: 20px;
-            }
-            .guidelines-section {
-                padding: 20px;
-            }
-            .animated-button {
-                font-size: 1.1em;
-                padding: 12px 25px;
-            }
-            .step {
-                padding: 20px;
-            }
-            .ads-placeholder {
-                padding: 10px;
-            }
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--background-color); color: var(--text-color); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background-color: var(--card-bg); padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); }
+        .header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { color: var(--primary-color); font-family: 'Poppins', sans-serif; font-size: 2rem; }
+        .start-button-container { text-align: center; margin-bottom: 30px; }
+        .action-button { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 15px 40px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 20px rgba(229, 57, 53, 0.5); transition: all 0.3s ease; }
+        .action-button:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(229, 57, 53, 0.7); }
+        .action-button:disabled { background: var(--disabled-color); cursor: not-allowed; box-shadow: none; transform: none; }
+        .step { background-color: #fafafa; border: 2px solid #e0e0e0; border-left: 5px solid var(--primary-color); border-radius: 8px; padding: 25px; margin-bottom: 30px; text-align: center; display: none; }
+        .step.active { display: block; }
+        .step h2 { color: var(--primary-color); margin-top: 0; }
+        .countdown { font-size: 3rem; font-weight: 700; color: var(--primary-color); margin: 15px 0; }
+        .ad-container { margin: 20px auto; padding: 10px; border: 1px dashed #ccc; background: #f9f9f9; max-width: 100%; overflow: hidden; text-align: center; border-radius: 8px; }
+        .ad-container h4 { margin: 0 0 10px 0; color: #777; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .video-ad-frame { width: 100%; max-width: 320px; height: 250px; border: none; margin: 10px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .dummy-content { line-height: 1.8; text-align: justify; margin-top: 40px; }
+        .dummy-content h3 { color: var(--primary-color); }
+        .final-continue { text-align: center; margin-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="redirect-container">
-        <div class="guidelines-section">
-            <h2>Instructions</h2>
-            <p>👉 Follow the steps below carefully. Wait for the timer to count down and the "Continue" button to appear.</p>
-            <button id="startBtn" class="animated-button">Start</button>
-        </div>
 
-        <div id="stepFlowContainer">
-            <!-- Step 1 -->
-            <div class="step" id="step1">
-                <h3>Step 1</h3>
-                <div class="timer-container">
-                    <span id="timer1">10</span> Seconds remaining
-                </div>
-                <div class="ads-placeholder" id="adPlaceholder1">
-                    <!-- Banner Ad 1 Placeholder -->
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : 'b353baa833c100aec38576e929b3f5fa',
-                            'format' : 'iframe',
-                            'height' : 90,
-                            'width' : 728,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                </div>
-                <p class="dummy-text">
-                    📘 Welcome to Step 1! Here you'll find some interesting information about optimizing your web content for search engines. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    🚀 Keep reading to discover valuable tips and tricks! Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    <h3>More Insights for Step 1:</h3>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures to be welcomed and pains to be avoided.</p>
-                    <!-- 5 Video Ad Placeholders for Step 1 -->
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder1_1">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder1_2">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder1_3">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder1_4">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder1_5">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <!-- Add more banner ad placeholders here to reach 20-30 banners -->
-                    <div class="ads-placeholder">
-                        <script type="text/javascript"> atOptions = { 'key' : 'b353baa833c100aec38576e929b3f5fa', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                    </div>
-                    <div class="ads-placeholder">
-                        <script type="text/javascript"> atOptions = { 'key' : 'b353baa833c100aec38576e929b3f5fa', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                    </div>
-                </p>
+    <div class="container">
+        <div class="header"><h1>🔒 Secure Link Verification</h1><p>👉 Please complete all steps to unlock your destination link.</p></div>
+        <div id="startContainer" class="start-button-container"><button id="startButton" class="action-button" onclick="startProcess()">Start Verification</button></div>
+
+        <!-- 3-STEP FLOW WITH LOTS OF NEW ADS -->
+        <div id="step1" class="step">
+            <h2>Step 1/3: Initializing...</h2><div id="countdown1" class="countdown">10</div>
+            <div class="ad-container"><h4>Advertisement</h4>
+                <!-- AAPKA NAYA VIDEO AD -->
+                <iframe class="video-ad-frame" src="https://www.profitableratecpm.com/nyw929cq8?key=ff4bfb33dfd010b5c8a9e7d98204fd68" scrolling="no" frameborder="0"></iframe>
             </div>
-
-            <!-- Step 2 -->
-            <div class="step" id="step2">
-                <h3>Step 2</h3>
-                <div class="timer-container">
-                    <span id="timer2">10</span> Seconds remaining
-                </div>
-                <div class="ads-placeholder" id="adPlaceholder2">
-                    <!-- Banner Ad 2 Placeholder -->
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : 'b353baa833c100aec38576e929b3f5fa',
-                            'format' : 'iframe',
-                            'height' : 90,
-                            'width' : 728,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                </div>
-                <p class="dummy-text">
-                    🔑 In Step 2, we delve into the art of crafting compelling headlines and meta descriptions that capture user attention. Nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                    💡 Learn how to make your content stand out from the crowd! Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
-                    <h3>Key Takeaways for Step 2:</h3>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <!-- 5 Video Ad Placeholders for Step 2 -->
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder2_1">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder2_2">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder2_3">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder2_4">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder2_5">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <!-- Add more banner ad placeholders here -->
-                    <div class="ads-placeholder">
-                        <script type="text/javascript"> atOptions = { 'key' : 'b353baa833c100aec38576e929b3f5fa', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                    </div>
-                    <div class="ads-placeholder">
-                        <script type="text/javascript"> atOptions = { 'key' : 'b353baa833c100aec38576e929b3f5fa', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                    </div>
-                </p>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="step" id="step3">
-                <h3>Step 3</h3>
-                <div class="timer-container">
-                    <span id="timer3">10</span> Seconds remaining
-                </div>
-                 <div class="ads-placeholder" id="adPlaceholder3">
-                    <!-- Banner Ad 3 Placeholder -->
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : 'b353baa833c100aec38576e929b3f5fa',
-                            'format' : 'iframe',
-                            'height' : 90,
-                            'width' : 728,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                </div>
-                <p class="dummy-text">
-                    ✨ Step 3 focuses on building a strong community around your brand and fostering engagement. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.
-                    📊 Don't miss out on these crucial strategies for growth! Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
-                    <h3>Mastering Engagement in Step 3:</h3>
-                    <p>Voluptatem accusantium doloremque laudantium, totam aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                    <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-                    <!-- 5 Video Ad Placeholders for Step 3 -->
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder3_1">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder3_2">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder3_3">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder3_4">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="ads-placeholder video-ad-placeholder" id="videoAdPlaceholder3_5">
-                        <iframe width="100%" height="315" src="https://www.profitableratecpm.com/zpb4zq40th?key=e609c6f2dd7e8f622fe449264b68d288" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <!-- Add more banner ad placeholders here -->
-                    <div class="ads-placeholder">
-                        <script type="text/javascript"> atOptions = { 'key' : 'b353baa833c100aec38576e929b3f5fa', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                    </div>
-                    <div class="ads-placeholder">
-                        <script type="text/javascript"> atOptions = { 'key' : 'b353baa833c100aec38576e929b3f5fa', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/b353baa833c100aec38576e929b3f5fa/invoke.js"></script>
-                    </div>
-                </p>
+            <div class="ad-container"><h4>Advertisement</h4>
+                <!-- AAPKA NAYA BANNER AD -->
+                <script type="text/javascript"> atOptions = {'key' : 'a16e8c5f549e21af4ac84b09ca791d32','format' : 'iframe','height' : 90,'width' : 728,'params' : {}}; </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/a16e8c5f549e21af4ac84b09ca791d32/invoke.js"></script>
             </div>
         </div>
 
-        <div class="final-continue-section" id="finalContinueSection" style="display: none;">
-            <button id="continueBtn" class="animated-button">Continue to Original Link</button>
+        <div id="step2" class="step">
+            <h2>Step 2/3: Verifying Browser...</h2><div id="countdown2" class="countdown">10</div>
+            <div class="ad-container"><h4>Advertisement</h4>
+                <!-- EK AUR NAYA VIDEO AD -->
+                <iframe class="video-ad-frame" src="https://www.profitableratecpm.com/nyw929cq8?key=ff4bfb33dfd010b5c8a9e7d98204fd68" scrolling="no" frameborder="0"></iframe>
+            </div>
+             <div class="ad-container"><h4>Advertisement</h4>
+                <!-- EK AUR NAYA BANNER AD -->
+                <script type="text/javascript"> atOptions = {'key' : 'a16e8c5f549e21af4ac84b09ca791d32','format' : 'iframe','height' : 90,'width' : 728,'params' : {}}; </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/a16e8c5f549e21af4ac84b09ca791d32/invoke.js"></script>
+            </div>
         </div>
+
+        <div id="step3" class="step">
+            <h2>Step 3/3: Preparing Link...</h2><div id="countdown3" class="countdown">10</div>
+            <div class="ad-container"><h4>Advertisement</h4>
+                <!-- TEESRA NAYA VIDEO AD -->
+                <iframe class="video-ad-frame" src="https://www.profitableratecpm.com/nyw929cq8?key=ff4bfb33dfd010b5c8a9e7d98204fd68" scrolling="no" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="dummy-content">
+            <h3>📘 Exclusive Information Unlocked</h3>
+            <p>To access the full content, please ensure all verification steps are completed. This is a security measure to protect the link. Your patience is appreciated. 🚀</p>
+            
+            <div class="ad-container"><h4>Advertisement</h4> <!-- Ad 1 -->
+                <script type="text/javascript"> atOptions = {'key' : 'a16e8c5f549e21af4ac84b09ca791d32','format' : 'iframe','height' : 90,'width' : 728,'params' : {}}; </script><script type="text/javascript" src="//www.highperformanceformat.com/a16e8c5f549e21af4ac84b09ca791d32/invoke.js"></script>
+            </div>
+
+            <p>Our system is designed for a secure experience. By following the steps, you help us maintain our service integrity. 🔑</p>
+            
+            <div class="ad-container"><h4>Advertisement</h4> <!-- Ad 2 -->
+                <iframe class="video-ad-frame" src="https://www.profitableratecpm.com/nyw929cq8?key=ff4bfb33dfd010b5c8a9e7d98204fd68" scrolling="no" frameborder="0"></iframe>
+            </div>
+            
+             <div class="ad-container"><h4>Advertisement</h4> <!-- Ad 3 -->
+                <iframe class="video-ad-frame" src="https://www.profitableratecpm.com/nyw929cq8?key=ff4bfb33dfd010b5c8a9e7d98204fd68" scrolling="no" frameborder="0"></iframe>
+            </div>
+
+            <p>Once you reach the destination, you will find exclusive content. We have placed multiple checkpoints to ensure a high-quality user experience.</p>
+
+            <div class="ad-container"><h4>Advertisement</h4> <!-- Ad 4 -->
+                 <script type="text/javascript"> atOptions = {'key' : 'a16e8c5f549e21af4ac84b09ca791d32','format' : 'iframe','height' : 90,'width' : 728,'params' : {}}; </script><script type="text/javascript" src="//www.highperformanceformat.com/a16e8c5f549e21af4ac84b09ca791d32/invoke.js"></script>
+            </div>
+        </div>
+
+        <div id="finalContinue" class="final-continue"><button id="continueButton" class="action-button" disabled>Continue to Link</button></div>
     </div>
 
     <script>
-        // --- JavaScript Logic for redirect.html ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const startBtn = document.getElementById('startBtn');
-            const finalContinueSection = document.getElementById('finalContinueSection');
-
-            let timers = {}; // Object to hold timer IDs
-
-            // Function to start a countdown timer
-            function startCountdown(timerId, duration, displayElementId) {
-                let timerDuration = duration;
-                const display = document.getElementById(displayElementId);
-
-                timers[timerId] = setInterval(() => {
-                    timerDuration--;
-                    if (display) {
-                        display.textContent = timerDuration;
-                    }
-
-                    if (timerDuration < 0) {
-                        clearInterval(timers[timerId]);
-                        // Timer finished, show "Next Step" button and proceed to next step
-                        if (timerId === 'timer1') {
-                            // Show Next Step button for Step 1
-                            const nextStepBtn1 = document.createElement('button');
-                            nextStepBtn1.textContent = 'Next Step';
-                            nextStepBtn1.className = 'animated-button';
-                            nextStepBtn1.onclick = () => {
-                                document.getElementById('step1').style.display = 'none'; // Hide current step
-                                document.getElementById('step2').style.display = 'block'; // Show next step
-                                document.getElementById('adPlaceholder2').style.display = 'flex'; // Show ads for next step
-                                document.getElementById('videoAdPlaceholder2_1').style.display = 'block'; // Show video ads for next step
-                                startCountdown('timer2', 10, 'timer2'); // Start timer for next step
-                                nextStepBtn1.remove(); // Remove the used button
-                            };
-                            document.getElementById('step1').appendChild(nextStepBtn1);
-                        } else if (timerId === 'timer2') {
-                            // Show Next Step button for Step 2
-                            const nextStepBtn2 = document.createElement('button');
-                            nextStepBtn2.textContent = 'Next Step';
-                            nextStepBtn2.className = 'animated-button';
-                            nextStepBtn2.onclick = () => {
-                                document.getElementById('step2').style.display = 'none'; // Hide current step
-                                document.getElementById('step3').style.display = 'block'; // Show next step
-                                document.getElementById('adPlaceholder3').style.display = 'flex'; // Show ads for next step
-                                document.getElementById('videoAdPlaceholder3_1').style.display = 'block'; // Show video ads for next step
-                                startCountdown('timer3', 10, 'timer3'); // Start timer for next step
-                                nextStepBtn2.remove(); // Remove the used button
-                            };
-                            document.getElementById('step2').appendChild(nextStepBtn2);
-                        } else if (timerId === 'timer3') {
-                            // If last step is complete, show the final continue button
-                            if (finalContinueSection) finalContinueSection.style.display = 'block';
-                        }
-                    }
-                }, 1000);
-            }
-
-            // Function to get URL parameter
-            function getUrlParameter(name) {
-                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-                var results = regex.exec(location.search);
-                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-            }
-
-            // --- Event Listener for Start Button ---
-            if (startBtn) {
-                startBtn.addEventListener('click', () => {
-                    startBtn.style.display = 'none'; // Hide start button
-                    const guidelinesSection = document.querySelector('.guidelines-section');
-                    if (guidelinesSection) {
-                        guidelinesSection.style.display = 'none';
-                    }
-
-                    // Show Step 1 and start its timer
-                    document.getElementById('step1').style.display = 'block';
-                    document.getElementById('adPlaceholder1').style.display = 'flex'; // Make sure banner ads are visible
-                    document.getElementById('videoAdPlaceholder1_1').style.display = 'block'; // Show first video ad
-                    startCountdown('timer1', 10, 'timer1');
-                });
-
-                const continueBtn = document.getElementById('continueBtn');
-                if (continueBtn) {
-                    continueBtn.addEventListener('click', () => {
-                        const originalUrl = getUrlParameter('url');
-                        if (originalUrl) {
-                            window.location.href = originalUrl; // Redirect to the original URL
-                        } else {
-                            alert('Error: Original URL not found.');
-                        }
-                    });
-                }
-            }
-
-            // --- Firebase Initialization (Optional, as requested) ---
-            // Commented out as it's optional
-            /*
-            const firebaseConfig = { ... };
-            // import { initializeApp } from "firebase/app";
-            // import { getAnalytics } from "firebase/analytics";
-            // const app = initializeApp(firebaseConfig);
-            // const analytics = getAnalytics(app);
-            */
-        });
+        const startButton=document.getElementById("startButton"),continueButton=document.getElementById("continueButton"),steps=[{div:document.getElementById("step1"),countdown:document.getElementById("countdown1")},{div:document.getElementById("step2"),countdown:document.getElementById("countdown2")},{div:document.getElementById("step3"),countdown:document.getElementById("countdown3")}];function getOriginalUrl(){const e=new URLSearchParams(window.location.search);return e.get("url")}function startTimer(e,t,n){let o=e;const c=setInterval(()=>{t.textContent=o,--o<0&&(clearInterval(c),n&&n())},1e3)}function startProcess(){startButton.disabled=!0,document.getElementById("startContainer").style.display="none",runStep(0)}function runStep(e){if(e>=steps.length)return steps[e-1]&&(steps[e-1].div.style.display="none"),continueButton.disabled=!1,continueButton.style.boxShadow="var(--glowing-red)",void continueButton.scrollIntoView({behavior:"smooth",block:"center"});e>0&&steps[e-1]&&(steps[e-1].div.style.display="none");const t=steps[e];t.div.classList.add("active"),t.div.scrollIntoView({behavior:"smooth",block:"center"}),startTimer(10,t.countdown,()=>{runStep(e+1)})}continueButton.addEventListener("click",()=>{const e=getOriginalUrl();e?window.location.href=e:alert("Destination URL not found!")});
     </script>
 </body>
-</html>
+</html>```
