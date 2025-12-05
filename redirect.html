@@ -21,7 +21,7 @@
         .header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
         .header h1 { color: var(--primary-color); font-family: 'Poppins', sans-serif; font-size: 2rem; }
         .start-button-container { text-align: center; margin-bottom: 30px; }
-        .action-button { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 15px 40px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 20px rgba(229, 57, 53, 0.5); transition: all 0.3s ease; }
+        .action-button { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 15px 40px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 20px rgba(229, 57, 53, 0.5); transition: all 0.3s ease; margin: 10px 0; }
         .action-button:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(229, 57, 53, 0.7); }
         .action-button:disabled { background: var(--disabled-color); cursor: not-allowed; box-shadow: none; transform: none; }
         .step { background-color: #fafafa; border: 2px solid #e0e0e0; border-left: 5px solid var(--primary-color); border-radius: 8px; padding: 25px; margin-bottom: 30px; text-align: center; display: none; }
@@ -34,13 +34,19 @@
         .dummy-content { line-height: 1.8; text-align: justify; margin-top: 40px; }
         .dummy-content h3 { color: var(--primary-color); }
         .final-continue { text-align: center; margin-top: 40px; }
+        /* Naya WhatsApp button initially hidden */
+        #whatsappButton { display: none; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="header"><h1>🔒 Secure Link Verification</h1><p>👉 Please complete all steps to unlock your destination 🔗.</p></div>
-        <div id="startContainer" class="start-button-container"><button id="startButton" class="action-button" onclick="startProcess()">Start Verification</button></div>
+        <div id="startContainer" class="start-button-container">
+            <button id="startButton" class="action-button" onclick="startProcess()">Start Verification</button>
+            <!-- New WhatsApp button -->
+            <a id="whatsappButton" href="https://whatsapp.com/channel/0029Vb6tP9jLikgDCKNdua1J" target="_blank" class="action-button">Join WhatsApp Channel</a>
+        </div>
 
         <!-- 3-STEP FLOW WITH LOTS OF NEW ADS -->
         <div id="step1" class="step">
@@ -104,7 +110,54 @@
     </div>
 
     <script>
-        const startButton=document.getElementById("startButton"),continueButton=document.getElementById("continueButton"),steps=[{div:document.getElementById("step1"),countdown:document.getElementById("countdown1")},{div:document.getElementById("step2"),countdown:document.getElementById("countdown2")},{div:document.getElementById("step3"),countdown:document.getElementById("countdown3")}];function getOriginalUrl(){const e=new URLSearchParams(window.location.search);return e.get("url")}function startTimer(e,t,n){let o=e;const c=setInterval(()=>{t.textContent=o,--o<0&&(clearInterval(c),n&&n())},1e3)}function startProcess(){startButton.disabled=!0,document.getElementById("startContainer").style.display="none",runStep(0)}function runStep(e){if(e>=steps.length)return steps[e-1]&&(steps[e-1].div.style.display="none"),continueButton.disabled=!1,continueButton.style.boxShadow="var(--glowing-red)",void continueButton.scrollIntoView({behavior:"smooth",block:"center"});e>0&&steps[e-1]&&(steps[e-1].div.style.display="none");const t=steps[e];t.div.classList.add("active"),t.div.scrollIntoView({behavior:"smooth",block:"center"}),startTimer(10,t.countdown,()=>{runStep(e+1)})}continueButton.addEventListener("click",()=>{const e=getOriginalUrl();e?window.location.href=e:alert("Destination URL not found!")});
+        const startButton = document.getElementById("startButton"),
+              continueButton = document.getElementById("continueButton"),
+              whatsappButton = document.getElementById("whatsappButton"),
+              steps = [
+                {div: document.getElementById("step1"), countdown: document.getElementById("countdown1")},
+                {div: document.getElementById("step2"), countdown: document.getElementById("countdown2")},
+                {div: document.getElementById("step3"), countdown: document.getElementById("countdown3")}
+              ];
+
+        function getOriginalUrl(){
+            const e = new URLSearchParams(window.location.search);
+            return e.get("url");
+        }
+
+        function startTimer(seconds, display, callback){
+            let time = seconds;
+            const interval = setInterval(()=>{
+                display.textContent = time;
+                --time < 0 && (clearInterval(interval), callback && callback());
+            },1000);
+        }
+
+        function startProcess(){
+            startButton.disabled = true;
+            document.getElementById("startContainer").style.display = "block";
+            whatsappButton.style.display = "inline-block"; // Show WhatsApp button
+            runStep(0);
+        }
+
+        function runStep(index){
+            if(index >= steps.length){
+                steps[index-1] && (steps[index-1].div.style.display = "none");
+                continueButton.disabled = false;
+                continueButton.style.boxShadow = "var(--glowing-red)";
+                continueButton.scrollIntoView({behavior:"smooth",block:"center"});
+                return;
+            }
+            index > 0 && steps[index-1] && (steps[index-1].div.style.display = "none");
+            const step = steps[index];
+            step.div.classList.add("active");
+            step.div.scrollIntoView({behavior:"smooth",block:"center"});
+            startTimer(10, step.countdown, ()=>{ runStep(index+1) });
+        }
+
+        continueButton.addEventListener("click", ()=>{
+            const url = getOriginalUrl();
+            url ? window.location.href = url : alert("Destination URL not found!");
+        });
     </script>
 </body>
 </html>
